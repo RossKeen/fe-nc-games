@@ -5,3 +5,12 @@
 .App-link {
   color: #61dafb;
 }
+
+header {
+  background-color: blanchedalmond;
+  padding: 0.8rem;
+}
+
+.link {
+  padding: 1.2rem;
+}

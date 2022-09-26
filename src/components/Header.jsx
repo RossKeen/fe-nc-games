@@ -1,3 +1,5 @@
+import Nav from "./Nav";
+
 const Header = () => {
   return (
     <header>
@@ -5,6 +7,7 @@ const Header = () => {
       <p>
         '<em>Life must be lived as play</em> ' - Plato
       </p>
+      <Nav />
     </header>
   );
 };

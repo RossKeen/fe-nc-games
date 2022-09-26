@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route></Route>
+        <Route path="*" element={<p>404: The page you requested was not found...</p>}></Route>
       </Routes>
     </div>
   );
