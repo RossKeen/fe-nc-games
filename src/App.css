@@ -19,3 +19,13 @@ header {
 .link {
   padding: 1.2rem;
 }
+
+.review-card {
+  padding: 0.2rem;
+  margin: 0.2rem;
+  height: 3rem;
+  list-style: none;
+  background-color: aliceblue;
+  border-color: black;
+  border-style: solid;
+}
