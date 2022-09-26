@@ -4,13 +4,17 @@ import ReviewCard from "./ReviewCard";
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     getReviews().then(({ reviews }) => {
       setReviews(reviews);
+      setIsLoading(false);
     });
   }, []);
 
+  if (isLoading) return <p>Reviews loading....</p>;
   return (
     <div className="reviews">
       <ul>
