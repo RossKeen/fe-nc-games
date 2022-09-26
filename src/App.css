@@ -6,6 +6,11 @@
   color: #61dafb;
 }
 
+footer {
+  text-align: left;
+  background-color: blanchedalmond;
+}
+
 header {
   background-color: blanchedalmond;
   padding: 0.8rem;
