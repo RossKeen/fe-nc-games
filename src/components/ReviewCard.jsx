@@ -2,9 +2,11 @@ import { Link } from "react-router-dom";
 
 const ReviewCard = ({ review }) => {
   return (
-    <li className="review-card">
-      {review.title} by {review.owner}
-    </li>
+    <Link to={`/reviews/${review.review_id}`}>
+      <li className="review-card">
+        {review.title} by {review.owner}
+      </li>
+    </Link>
   );
 };
 
