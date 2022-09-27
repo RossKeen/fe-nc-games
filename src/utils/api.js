@@ -10,4 +10,10 @@ const getReviews = () => {
   });
 };
 
-module.exports = { getReviews };
+const getReviewById = (id) => {
+  return gamesAPI.get(`/reviews/${id}`).then(({ data }) => {
+    return data;
+  });
+};
+
+module.exports = { getReviews, getReviewById };
