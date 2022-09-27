@@ -7,7 +7,7 @@
 }
 
 .article-img {
-  width: 80%;
+  width: 60%;
   padding: 1rem;
 }
 
@@ -29,6 +29,11 @@ header {
   color: gray;
   margin-top: -0.6rem;
   font-size: 0.8rem;
+}
+
+.review-body {
+  margin: 0% 20vw;
+  text-align: justify;
 }
 
 .review-card {

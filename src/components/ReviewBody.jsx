@@ -23,7 +23,7 @@ const ReviewBody = ({ review_id }) => {
       <p> by {review.owner}</p>
       <p className="posted-on">{postedDateStr}</p>
       <p>{review.votes} Kudos</p>
-      <p>{review.review_body}</p>
+      <p className="review-body">{review.review_body}</p>
     </article>
   );
 };
