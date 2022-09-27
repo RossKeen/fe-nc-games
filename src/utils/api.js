@@ -10,10 +10,16 @@ const getReviews = (category) => {
   });
 };
 
+const getReviewById = (id) => {
+  return gamesAPI.get(`/reviews/${id}`).then(({ data }) => {
+    return data;
+  });
+};
+
 const getCategories = () => {
   return gamesAPI.get("/categories").then(({ data }) => {
     return data;
   });
 };
 
-module.exports = { getReviews, getCategories };
+module.exports = { getReviews, getReviewById, getCategories };
