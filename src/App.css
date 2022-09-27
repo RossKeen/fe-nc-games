@@ -7,8 +7,16 @@
 }
 
 .article-img {
-  width: 60%;
-  padding: 1rem;
+  margin-top: 2rem;
+  padding: 0.4rem;
+  border-radius: 2rem;
+  border-color: black;
+  border-width: 0.1rem;
+  border-style: solid;
+  background-color: antiquewhite;
+  box-shadow: 0.5rem 0.5rem goldenrod;
+  max-width: 30rem;
+  max-height: auto;
 }
 
 footer {
@@ -32,7 +40,7 @@ header {
 }
 
 .review-body {
-  margin: 0% 20vw;
+  margin: 0% 20vw 2rem 20vw;
   text-align: justify;
 }
 
