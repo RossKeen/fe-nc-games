@@ -5,12 +5,15 @@ import { dateParser } from "../utils/utils";
 const ReviewBody = ({ review_id }) => {
   const [review, setReview] = useState({});
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   let postedDateStr;
 
   useEffect(() => {
+    setIsLoading(true);
     getReviewById(review_id)
       .then(({ review }) => {
         setReview(review);
+        setIsLoading(false);
       })
       .catch((err) => {
         setError(err);
@@ -27,6 +30,10 @@ const ReviewBody = ({ review_id }) => {
         {error.response.status}: {error.response.statusText}
       </p>
     );
+  }
+
+  if (isLoading) {
+    return <p> Loading... </p>;
   }
 
   return (
