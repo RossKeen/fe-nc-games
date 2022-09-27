@@ -4,16 +4,29 @@ import { dateParser } from "../utils/utils";
 
 const ReviewBody = ({ review_id }) => {
   const [review, setReview] = useState({});
+  const [error, setError] = useState(null);
   let postedDateStr;
 
   useEffect(() => {
-    getReviewById(review_id).then(({ review }) => {
-      setReview(review);
-    });
+    getReviewById(review_id)
+      .then(({ review }) => {
+        setReview(review);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
 
   if (review.review_id) {
     postedDateStr = `Posted on ${dateParser(review.created_at)[0]} at ${dateParser(review.created_at)[1]}.`;
+  }
+
+  if (error) {
+    return (
+      <p>
+        {error.response.status}: {error.response.statusText}
+      </p>
+    );
   }
 
   return (
