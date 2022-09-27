@@ -4,10 +4,22 @@ const gamesAPI = axios.create({
   baseURL: "https://rk-board-games.herokuapp.com/api",
 });
 
-const getReviews = () => {
-  return gamesAPI.get("/reviews").then(({ data }) => {
+const getReviews = (category) => {
+  if (category === null) {
+    return gamesAPI.get("/reviews").then(({ data }) => {
+      return data;
+    });
+  } else {
+    return gamesAPI.get(`/reviews?category=${category}`).then(({ data }) => {
+      return data;
+    });
+  }
+};
+
+const getCategories = () => {
+  return gamesAPI.get("/categories").then(({ data }) => {
     return data;
   });
 };
 
-module.exports = { getReviews };
+module.exports = { getReviews, getCategories };
