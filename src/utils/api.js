@@ -5,15 +5,9 @@ const gamesAPI = axios.create({
 });
 
 const getReviews = (category) => {
-  if (category === null) {
-    return gamesAPI.get("/reviews").then(({ data }) => {
-      return data;
-    });
-  } else {
-    return gamesAPI.get(`/reviews?category=${category}`).then(({ data }) => {
-      return data;
-    });
-  }
+  return gamesAPI.get("/reviews", { params: { category: category } }).then(({ data }) => {
+    return data;
+  });
 };
 
 const getCategories = () => {
