@@ -41,6 +41,18 @@ header {
   color: white;
 }
 
+.link-selected {
+  margin: 0.1rem 0.5rem;
+  padding: 0.5rem;
+  border-width: 0.1rem;
+  border-color: black;
+  border-style: solid;
+  display: inline-block;
+  background-color: yellow;
+  font-weight: 500;
+  color: black;
+}
+
 .posted-on {
   color: gray;
   margin-top: -0.6rem;
