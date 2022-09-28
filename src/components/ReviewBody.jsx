@@ -38,7 +38,7 @@ const ReviewBody = ({ review_id }) => {
 
   return (
     <article>
-      <img className="article-img" src={review.review_img_url} alt={`article image for ${review.title}`}></img>
+      <img className="article-img" src={review.review_img_url} alt={`${review.title} thumbnail`}></img>
       <h2>{review.title}</h2>
       <p> by {review.owner}</p>
       <p className="posted-on">{postedDateStr}</p>
