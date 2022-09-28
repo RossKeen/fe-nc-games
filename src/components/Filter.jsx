@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getCategories } from "../utils/api";
 
-const Filter = ({ setSearchParams }) => {
+const Filter = ({ searchParams, setSearchParams }) => {
   const [categories, setCategories] = useState([]);
-  const [buttonPressed, setButtonPressed] = useState(false);
+  const currCategory = searchParams.get("category");
 
   const handleClick = (e) => {
     setSearchParams(e.target.text);
-    if (buttonPressed) {
-      setButtonPressed(false);
-    } else {
-      setButtonPressed(true);
-    }
   };
 
   useEffect(() => {
@@ -29,7 +24,7 @@ const Filter = ({ setSearchParams }) => {
           handleClick(e);
         }}
         key="All"
-        className={buttonPressed ? "link-selected" : "link"}
+        className={currCategory === null ? "link-selected" : "link"}
         to={"/reviews"}
       >
         All
@@ -42,7 +37,7 @@ const Filter = ({ setSearchParams }) => {
               handleClick(e);
             }}
             key={category.slug}
-            className={buttonPressed ? "link-selected" : "link"}
+            className={currCategory === category.slug ? "link-selected" : "link"}
           >
             {category.slug}
           </Link>

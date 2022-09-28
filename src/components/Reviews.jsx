@@ -7,7 +7,7 @@ const Reviews = () => {
 
   return (
     <div className="reviews">
-      <Filter setSearchParams={setSearchParams} />
+      <Filter searchParams={searchParams} setSearchParams={setSearchParams} />
       <ReviewList searchParams={searchParams} />
     </div>
   );
