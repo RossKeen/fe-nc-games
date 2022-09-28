@@ -7,12 +7,19 @@ const ReviewBody = ({ review_id }) => {
   const [review, setReview] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { kudos, incKudos } = useKudos("/reviews", review_id);
+  const { kudos, incKudos, decKudos } = useKudos("/reviews", review_id);
+  const [kudosClicked, setKudosClicked] = useState(false);
   let postedDateStr;
 
   const handleClick = (e) => {
     e.preventDefault();
-    incKudos();
+    if (!kudosClicked) {
+      incKudos();
+      setKudosClicked(true);
+    } else {
+      decKudos();
+      setKudosClicked(false);
+    }
   };
 
   useEffect(() => {
@@ -52,7 +59,7 @@ const ReviewBody = ({ review_id }) => {
       <p className="kudos">
         {kudos} Kudos{" "}
         <button
-          className="kudos-button"
+          className={kudosClicked ? "clicked-button" : undefined}
           onClick={(e) => {
             handleClick(e);
           }}

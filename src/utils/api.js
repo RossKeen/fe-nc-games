@@ -29,9 +29,11 @@ const getKudos = (path, id) => {
 };
 
 const incKudosByOne = (path, id) => {
-  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: 1 }).then((res) => {
-    return res;
-  });
+  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: 1 }).then((res) => res);
 };
 
-module.exports = { getReviews, getReviewById, getCategories, getKudos, incKudosByOne };
+const decKudosByOne = (path, id) => {
+  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: -1 }).then((res) => res);
+};
+
+module.exports = { getReviews, getReviewById, getCategories, getKudos, incKudosByOne, decKudosByOne };

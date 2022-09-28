@@ -19,6 +19,15 @@
   max-height: auto;
 }
 
+button {
+  border-radius: 1rem;
+}
+
+.clicked-button {
+  background-color: palegreen;
+  border-radius: 1rem;
+}
+
 footer {
   text-align: left;
   background-color: blanchedalmond;
