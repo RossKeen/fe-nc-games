@@ -38,4 +38,12 @@ const getComments = (review_id) => {
   });
 };
 
-module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos, getComments };
+const postComment = (review_id, newComment) => {
+  return gamesAPI.post(`/reviews/${review_id}/comments`, { author: "guest", body: { newComment } });
+};
+
+const getUsers = () => {
+  return gamesAPI.get(`/users`).then(({ data }) => data.users);
+};
+
+module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos, getComments, postComment, getUsers };
