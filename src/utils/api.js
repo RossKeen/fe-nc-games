@@ -28,12 +28,8 @@ const getKudos = (path, id) => {
   });
 };
 
-const incKudosByOne = (path, id) => {
-  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: 1 }).then((res) => res);
+const patchKudos = (path, id, change) => {
+  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: change }).then((res) => res);
 };
 
-const decKudosByOne = (path, id) => {
-  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: -1 }).then((res) => res);
-};
-
-module.exports = { getReviews, getReviewById, getCategories, getKudos, incKudosByOne, decKudosByOne };
+module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos };

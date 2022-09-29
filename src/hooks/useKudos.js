@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { decKudosByOne, getKudos, incKudosByOne } from "../utils/api";
+import { getKudos, patchKudos } from "../utils/api";
 
 const useKudos = (path, id) => {
   const [kudos, setKudos] = useState(0);
@@ -11,21 +11,14 @@ const useKudos = (path, id) => {
     });
   }, [path, id]);
 
-  const incKudos = () => {
-    setKudos((currKudos) => currKudos + 1);
-    incKudosByOne(path, id).catch((err) => {
-      setKudos((currKudos) => currKudos - 1);
+  const changeKudos = (change) => {
+    setKudos((currKudos) => currKudos + change);
+    patchKudos(path, id, change).catch((err) => {
+      setKudos((currKudos) => currKudos - change);
     });
   };
 
-  const decKudos = () => {
-    setKudos((currKudos) => currKudos - 1);
-    decKudosByOne(path, id).catch((err) => {
-      setKudos((currKudos) => currKudos + 1);
-    });
-  };
-
-  return { kudos, incKudos, decKudos, kudosClicked, setKudosClicked };
+  return { kudos, kudosClicked, setKudosClicked, changeKudos };
 };
 
 export default useKudos;
