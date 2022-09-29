@@ -3,6 +3,7 @@ import { decKudosByOne, getKudos, incKudosByOne } from "../utils/api";
 
 const useKudos = (path, id) => {
   const [kudos, setKudos] = useState(0);
+  const [kudosClicked, setKudosClicked] = useState(false);
 
   useEffect(() => {
     getKudos(path, id).then((data) => {
@@ -24,7 +25,7 @@ const useKudos = (path, id) => {
     });
   };
 
-  return { kudos, incKudos, decKudos };
+  return { kudos, incKudos, decKudos, kudosClicked, setKudosClicked };
 };
 
 export default useKudos;

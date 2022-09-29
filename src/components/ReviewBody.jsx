@@ -7,8 +7,7 @@ const ReviewBody = ({ review_id }) => {
   const [review, setReview] = useState({});
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { kudos, incKudos, decKudos } = useKudos("/reviews", review_id);
-  const [kudosClicked, setKudosClicked] = useState(false);
+  const { kudos, incKudos, decKudos, kudosClicked, setKudosClicked } = useKudos("/reviews", review_id);
   let postedDateStr;
 
   const handleClick = (e) => {
