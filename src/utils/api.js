@@ -32,4 +32,10 @@ const patchKudos = (path, id, change) => {
   return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: change }).then((res) => res);
 };
 
-module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos };
+const getComments = (review_id) => {
+  return gamesAPI.get(`/reviews/${review_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+};
+
+module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos, getComments };
