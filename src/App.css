@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-areas: "header" "body" "footer";
+  grid-auto-rows: auto;
 }
 
 .App-link {
@@ -11,11 +14,11 @@
   padding: 0.4rem;
   border-radius: 2rem;
   border-color: black;
-  border-width: 0.1rem;
+  border-width: 2px;
   border-style: solid;
   background-color: antiquewhite;
   box-shadow: 0.5rem 0.5rem goldenrod;
-  max-width: 30rem;
+  max-width: 90%;
   max-height: auto;
 }
 
@@ -23,19 +26,41 @@ button {
   border-radius: 1rem;
 }
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .clicked-button {
   background-color: palegreen;
   border-radius: 1rem;
 }
 
+.comment-card {
+  position: relative;
+  margin-right: 2rem;
+  height: fit-content;
+  list-style: none;
+  background-color: aliceblue;
+  border-color: black;
+  border-style: solid;
+  margin-bottom: 1rem;
+}
+
 footer {
   text-align: left;
   background-color: blanchedalmond;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem;
+  grid-area: footer;
 }
 
 header {
   background-color: blanchedalmond;
   padding: 0.8rem;
+  grid-area: header;
 }
 
 .link {
@@ -81,4 +106,17 @@ header {
   background-color: aliceblue;
   border-color: black;
   border-style: solid;
+}
+
+.review-item {
+  padding-bottom: 2.5rem;
+  margin: 0, auto;
+}
+
+.reviews {
+  padding-bottom: 2.5rem;
+}
+
+.routes {
+  grid-area: body;
 }
