@@ -22,4 +22,14 @@ const getCategories = () => {
   });
 };
 
-module.exports = { getReviews, getReviewById, getCategories };
+const getKudos = (path, id) => {
+  return gamesAPI.get(`${path}/${id.toString()}`).then(({ data }) => {
+    return data.review.votes;
+  });
+};
+
+const patchKudos = (path, id, change) => {
+  return gamesAPI.patch(`${path}/${id.toString()}`, { inc_votes: change }).then((res) => res);
+};
+
+module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos };
