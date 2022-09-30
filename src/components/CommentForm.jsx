@@ -37,7 +37,7 @@ const CommentForm = ({ review_id, commentPosted, setCommentPosted, setCommentSub
         handleSubmit(e);
       }}
     >
-      <textarea required="true" placeholder="Add a comment..." value={newComment} onChange={(e) => setNewComment(e.target.value)}></textarea>
+      <textarea required={true} placeholder="Add a comment..." value={newComment} onChange={(e) => setNewComment(e.target.value)}></textarea>
       <button type="submit">Post comment</button>
       {commentPosted ? <p>Comment posted!</p> : null}
     </form>
