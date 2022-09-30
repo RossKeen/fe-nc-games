@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { postComment } from "../utils/api";
 
-const CommentForm = ({ review_id, setCommentPosted }) => {
+const CommentForm = ({ review_id, commentPosted, setCommentPosted }) => {
   const [newComment, setNewComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,6 +14,7 @@ const CommentForm = ({ review_id, setCommentPosted }) => {
     postComment(review_id, newComment, user).then(() => {
       setCommentPosted(true);
       setIsLoading(false);
+      setNewComment("");
     });
   };
 
@@ -28,8 +29,8 @@ const CommentForm = ({ review_id, setCommentPosted }) => {
       }}
     >
       <textarea required="true" placeholder="Add a comment..." value={newComment} onChange={(e) => setNewComment(e.target.value)}></textarea>
-      <br></br>
       <button type="submit">Post comment</button>
+      {commentPosted ? <p>Comment posted!</p> : null}
     </form>
   );
 };

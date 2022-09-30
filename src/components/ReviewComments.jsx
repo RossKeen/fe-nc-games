@@ -10,7 +10,6 @@ const ReviewComments = ({ review_id }) => {
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res);
-      setCommentPosted(false);
     });
   }, [commentPosted]);
 
@@ -27,7 +26,7 @@ const ReviewComments = ({ review_id }) => {
   return (
     <div className="comments">
       <h2>Comments ({comments.length}):</h2>
-      <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} />
+      <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} commentPosted={commentPosted} />
       <ul>
         {comments.map((comment) => {
           return <CommentCard key={comment.comment_id} comment={comment} />;
