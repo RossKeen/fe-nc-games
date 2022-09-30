@@ -38,8 +38,10 @@ const getComments = (review_id) => {
   });
 };
 
-const postComment = (review_id, newComment) => {
-  return gamesAPI.post(`/reviews/${review_id}/comments`, { author: "guest", body: { newComment } });
+const postComment = (review_id, newComment, user) => {
+  return gamesAPI.post(`/reviews/${review_id}/comments`, { username: user.username, body: newComment }).then(({ data }) => {
+    return data.postedComment;
+  });
 };
 
 const getUsers = () => {
