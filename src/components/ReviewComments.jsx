@@ -22,6 +22,10 @@ const ReviewComments = ({ review_id, error }) => {
     return null;
   }
 
+  if (error) {
+    return <p>Error fetching comments. Please reload and try again.</p>;
+  }
+
   if (comments.length === 0) {
     return (
       <div>
