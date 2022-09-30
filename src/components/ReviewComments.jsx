@@ -7,13 +7,22 @@ const ReviewComments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [commentPosted, setCommentPosted] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getComments(review_id).then((res) => {
-      setComments(res);
-      setCommentSubmitted(false);
-    });
+    getComments(review_id)
+      .then((res) => {
+        setComments(res);
+        setCommentSubmitted(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, [commentSubmitted]);
+
+  if (error) {
+    return <p>Error fetching comments. Please reload and try again.</p>;
+  }
 
   if (comments.length === 0) {
     return (

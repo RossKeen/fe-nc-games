@@ -7,6 +7,7 @@ const Filter = ({ searchParams, setSearchParams }) => {
   const [categories, setCategories] = useState([]);
   const [buttonPressed, setButtonPressed] = useState(false);
   const currCategory = searchParams.get("category");
+  const [error, setError] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -46,10 +47,18 @@ const Filter = ({ searchParams, setSearchParams }) => {
 
   useEffect(() => {
     setSearchParams({ sort_by: "created_at" });
-    getCategories().then(({ categories }) => {
-      setCategories(categories);
-    });
+    getCategories()
+      .then(({ categories }) => {
+        setCategories(categories);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
+
+  if (error) {
+    return <p>Error fetching categories. Please try again.</p>;
+  }
 
   return (
     <div className="filter" id="filter">
