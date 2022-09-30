@@ -3,22 +3,24 @@ import { getComments } from "../utils/api";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
 
-const ReviewComments = ({ review_id }) => {
+const ReviewComments = ({ review_id, error }) => {
   const [comments, setComments] = useState([]);
   const [commentPosted, setCommentPosted] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
-  const [error, setError] = useState(null);
+  const [commentDeleted, setCommentDeleted] = useState(false);
+  const [commentDeletedConfirmation, setCommentDeletedConfirmation] = useState(false);
 
   useEffect(() => {
-    getComments(review_id)
-      .then((res) => {
-        setComments(res);
-        setCommentSubmitted(false);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, [commentSubmitted]);
+    getComments(review_id).then((res) => {
+      setComments(res);
+      setCommentSubmitted(false);
+      setCommentDeleted(false);
+    });
+  }, [commentSubmitted, commentDeleted]);
+
+  if (error) {
+    return null;
+  }
 
   if (error) {
     return <p>Error fetching comments. Please reload and try again.</p>;
@@ -38,9 +40,10 @@ const ReviewComments = ({ review_id }) => {
     <div className="comments">
       <h2>Comments ({comments.length}):</h2>
       <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} commentPosted={commentPosted} setCommentSubmitted={setCommentSubmitted} />
+      {commentDeletedConfirmation ? <p>Comment deleted successfully!</p> : null}
       <ul>
         {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return <CommentCard key={comment.comment_id} comment={comment} setCommentDeleted={setCommentDeleted} setCommentDeletedConfirmation={setCommentDeletedConfirmation} />;
         })}
       </ul>
     </div>
