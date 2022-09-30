@@ -3,17 +3,19 @@ import { UserContext } from "../contexts/User";
 import { deleteComment } from "../utils/api";
 import { dateParser } from "../utils/utils";
 
-const CommentCard = ({ comment, setCommentDeleted }) => {
+const CommentCard = ({ comment, setCommentDeleted, setCommentDeletedConfirmation }) => {
   const { user } = useContext(UserContext);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleClick = (e) => {
+    setCommentDeletedConfirmation(false);
     setIsLoading(true);
     e.preventDefault();
     deleteComment(comment.comment_id)
       .then(() => {
         setCommentDeleted(true);
+        setCommentDeletedConfirmation(true);
         setIsLoading(false);
       })
       .catch((err) => {

@@ -8,6 +8,7 @@ const ReviewComments = ({ review_id }) => {
   const [commentPosted, setCommentPosted] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
   const [commentDeleted, setCommentDeleted] = useState(false);
+  const [commentDeletedConfirmation, setCommentDeletedConfirmation] = useState(false);
 
   useEffect(() => {
     getComments(review_id).then((res) => {
@@ -31,9 +32,10 @@ const ReviewComments = ({ review_id }) => {
     <div className="comments">
       <h2>Comments ({comments.length}):</h2>
       <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} commentPosted={commentPosted} setCommentSubmitted={setCommentSubmitted} />
+      {commentDeletedConfirmation ? <p>Comment deleted successfully!</p> : null}
       <ul>
         {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} setCommentDeleted={setCommentDeleted} />;
+          return <CommentCard key={comment.comment_id} comment={comment} setCommentDeleted={setCommentDeleted} setCommentDeletedConfirmation={setCommentDeletedConfirmation} />;
         })}
       </ul>
     </div>
