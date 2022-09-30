@@ -48,4 +48,8 @@ const getUsers = () => {
   return gamesAPI.get(`/users`).then(({ data }) => data.users);
 };
 
-module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos, getComments, postComment, getUsers };
+const deleteComment = (comment_id) => {
+  return gamesAPI.delete(`/comments/${comment_id}`);
+};
+
+module.exports = { getReviews, getReviewById, getCategories, getKudos, patchKudos, getComments, postComment, getUsers, deleteComment };

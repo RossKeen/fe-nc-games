@@ -3,9 +3,8 @@ import useKudos from "../hooks/useKudos";
 import { getReviewById } from "../utils/api";
 import { dateParser } from "../utils/utils";
 
-const ReviewBody = ({ review_id }) => {
+const ReviewBody = ({ review_id, error, setError }) => {
   const [review, setReview] = useState({});
-  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { kudos, changeKudos, kudosClicked, setKudosClicked } = useKudos("/reviews", review_id);
   let postedDateStr;
@@ -38,11 +37,7 @@ const ReviewBody = ({ review_id }) => {
   }
 
   if (error) {
-    return (
-      <p>
-        {error.response.status}: {error.response.statusText}
-      </p>
-    );
+    return <p>404: Review not found...</p>;
   }
 
   if (isLoading) {
