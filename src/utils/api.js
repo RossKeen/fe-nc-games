@@ -4,8 +4,8 @@ const gamesAPI = axios.create({
   baseURL: "https://rk-board-games.herokuapp.com/api",
 });
 
-const getReviews = (category) => {
-  return gamesAPI.get("/reviews", { params: { category: category } }).then(({ data }) => {
+const getReviews = (category, sort_by, order) => {
+  return gamesAPI.get("/reviews", { params: { category: category, sort_by: sort_by, order: order } }).then(({ data }) => {
     return data;
   });
 };
