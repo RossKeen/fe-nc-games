@@ -3,7 +3,7 @@ import { getComments } from "../utils/api";
 import CommentCard from "./CommentCard";
 import CommentForm from "./CommentForm";
 
-const ReviewComments = ({ review_id }) => {
+const ReviewComments = ({ review_id, error }) => {
   const [comments, setComments] = useState([]);
   const [commentPosted, setCommentPosted] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
@@ -17,6 +17,10 @@ const ReviewComments = ({ review_id }) => {
       setCommentDeleted(false);
     });
   }, [commentSubmitted, commentDeleted]);
+
+  if (error) {
+    return null;
+  }
 
   if (comments.length === 0) {
     return (
