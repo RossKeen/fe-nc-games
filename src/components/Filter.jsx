@@ -31,6 +31,17 @@ const Filter = ({ searchParams, setSearchParams }) => {
   const toggleButton = (e) => {
     e.preventDefault();
     buttonPressed ? setButtonPressed(false) : setButtonPressed(true);
+    if (!buttonPressed) {
+      setSearchParams((currParams) => {
+        currParams.append("order", "asc");
+        return currParams;
+      });
+    } else {
+      setSearchParams((currParams) => {
+        currParams.delete("order");
+        return currParams;
+      });
+    }
   };
 
   useEffect(() => {
@@ -84,7 +95,6 @@ const Filter = ({ searchParams, setSearchParams }) => {
       >
         {buttonPressed ? "Ascending" : "Descending"}
       </button>
-      <p>Date, comment_count, votes, flip order</p>
     </div>
   );
 };

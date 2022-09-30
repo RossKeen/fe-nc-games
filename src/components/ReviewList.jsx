@@ -8,7 +8,7 @@ const ReviewList = ({ searchParams }) => {
 
   useEffect(() => {
     setIsLoading(true);
-    getReviews(searchParams.get("category"), searchParams.get("sort_by")).then(({ reviews }) => {
+    getReviews(searchParams.get("category"), searchParams.get("sort_by"), searchParams.get("order")).then(({ reviews }) => {
       setReviews(reviews);
       setIsLoading(false);
     });
