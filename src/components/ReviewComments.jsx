@@ -6,19 +6,21 @@ import CommentForm from "./CommentForm";
 const ReviewComments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [commentPosted, setCommentPosted] = useState(false);
+  const [commentSubmitted, setCommentSubmitted] = useState(false);
 
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res);
+      setCommentSubmitted(false);
     });
-  }, [commentPosted]);
+  }, [commentSubmitted]);
 
   if (comments.length === 0) {
     return (
       <div>
         <h2>Comments:</h2>
         <p>There are no comments on this review yet. Why not post one?</p>
-        <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} />
+        <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} setCommentSubmitted={setCommentSubmitted} />
       </div>
     );
   }
@@ -26,7 +28,7 @@ const ReviewComments = ({ review_id }) => {
   return (
     <div className="comments">
       <h2>Comments ({comments.length}):</h2>
-      <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} commentPosted={commentPosted} />
+      <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} commentPosted={commentPosted} setCommentSubmitted={setCommentSubmitted} />
       <ul>
         {comments.map((comment) => {
           return <CommentCard key={comment.comment_id} comment={comment} />;

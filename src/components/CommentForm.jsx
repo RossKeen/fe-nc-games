@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/User";
 import { postComment } from "../utils/api";
 
-const CommentForm = ({ review_id, commentPosted, setCommentPosted }) => {
+const CommentForm = ({ review_id, commentPosted, setCommentPosted, setCommentSubmitted }) => {
   const [newComment, setNewComment] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,6 +15,7 @@ const CommentForm = ({ review_id, commentPosted, setCommentPosted }) => {
     postComment(review_id, newComment, user)
       .then(() => {
         setCommentPosted(true);
+        setCommentSubmitted(true);
         setIsLoading(false);
         setNewComment("");
       })
