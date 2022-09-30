@@ -4,4 +4,14 @@ const dateParser = (dateStr) => {
   return [date, time];
 };
 
-module.exports = { dateParser };
+const handleURLParams = (currParams, queryKey, queryValue) => {
+  if (!currParams.has(queryKey)) {
+    currParams.append(queryKey, queryValue);
+  } else {
+    currParams.delete(queryKey);
+    currParams.append(queryKey, queryValue);
+  }
+  return currParams;
+};
+
+module.exports = { dateParser, handleURLParams };
