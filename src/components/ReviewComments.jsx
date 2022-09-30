@@ -7,13 +7,15 @@ const ReviewComments = ({ review_id }) => {
   const [comments, setComments] = useState([]);
   const [commentPosted, setCommentPosted] = useState(false);
   const [commentSubmitted, setCommentSubmitted] = useState(false);
+  const [commentDeleted, setCommentDeleted] = useState(false);
 
   useEffect(() => {
     getComments(review_id).then((res) => {
       setComments(res);
       setCommentSubmitted(false);
+      setCommentDeleted(false);
     });
-  }, [commentSubmitted]);
+  }, [commentSubmitted, commentDeleted]);
 
   if (comments.length === 0) {
     return (
@@ -31,7 +33,7 @@ const ReviewComments = ({ review_id }) => {
       <CommentForm review_id={review_id} setCommentPosted={setCommentPosted} commentPosted={commentPosted} setCommentSubmitted={setCommentSubmitted} />
       <ul>
         {comments.map((comment) => {
-          return <CommentCard key={comment.comment_id} comment={comment} />;
+          return <CommentCard key={comment.comment_id} comment={comment} setCommentDeleted={setCommentDeleted} />;
         })}
       </ul>
     </div>
