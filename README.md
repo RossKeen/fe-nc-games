@@ -2,7 +2,7 @@
 
 This project is a boardgame review website. It was made as a frontend portfolio piece as part of the Northcoders Coding Bootcamp.
 
-A deployed version available at .....
+A deployed version available at https://rk-ncgames.netlify.app/
 
 Some features are still in development. For the time being, you are logged in as a default user and have full access to the website's functionality.
 

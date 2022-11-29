@@ -9,17 +9,26 @@ const ReviewComments = ({ review_id, error }) => {
   const [commentSubmitted, setCommentSubmitted] = useState(false);
   const [commentDeleted, setCommentDeleted] = useState(false);
   const [commentDeletedConfirmation, setCommentDeletedConfirmation] = useState(false);
+  const [commentError, setCommentError] = useState(null);
 
   useEffect(() => {
-    getComments(review_id).then((res) => {
-      setComments(res);
-      setCommentSubmitted(false);
-      setCommentDeleted(false);
-    });
+    getComments(review_id)
+      .then((res) => {
+        setComments(res);
+        setCommentSubmitted(false);
+        setCommentDeleted(false);
+      })
+      .catch((err) => {
+        setCommentError(err);
+      });
   }, [commentSubmitted, commentDeleted]);
 
   if (error) {
     return null;
+  }
+
+  if (commentError) {
+    return <p>Error fetching comments...</p>;
   }
 
   if (error) {
