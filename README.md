@@ -8,7 +8,7 @@ Some features are still in development. For the time being, you are logged in as
 
 This project uses an API that I developed which can be accessed on https://github.com/RossKeen/be-nc-games
 
-Alternatively, a hosted version of the API is available at https://rk-board-games.herokuapp.com/api/
+Alternatively, a hosted version of the API is available at https://nc-games.cyclic.app/api
 
 ## Running the project locally:
 
